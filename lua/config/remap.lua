@@ -54,3 +54,4 @@ vim.keymap.set(
 
 vim.api.nvim_set_keymap("n", "<leader>,", "<C-w>h", { })
 vim.api.nvim_set_keymap("n", "<leader>.", "<C-w>l", { })
+vim.keymap.set("n", "<leader>/", ":noh<cr>", { })
