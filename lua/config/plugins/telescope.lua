@@ -1,13 +1,7 @@
-local builtin = require('telescope.builtin')
-
-vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = '' })
-vim.keymap.set('n', '<leader>ps', function()
-	builtin.grep_string({ search = vim.fn.input("Grep > ") })
-end)
 
 return {
     {
-        'vim-telescope/telescope.nvim', 
+        'nvim-telescope/telescope.nvim', 
         tag = '0.1.8',
         dependencies = { 
             'nvim-lua/plenary.nvim', 
@@ -22,15 +16,15 @@ return {
                }
            }
             vim.keymap.set('n', '<leader>en', function() 
-                builtin.find_files {
+                require('telescope.builtin').find_files {
                      cwd = vim.fn.stdpath("config")
                 } 
             end)
 
-            vim.keymap.set('n', '<leader>fh', builtin.help_tags)
+            vim.keymap.set('n', '<leader>fh', require('telescope.builtin').help_tags)
 
             vim.keymap.set('n', '<leader>pf', function()
-                builtin.find_files() 
+                require('telescope.builtin').find_files() 
             end)
         end
     }
