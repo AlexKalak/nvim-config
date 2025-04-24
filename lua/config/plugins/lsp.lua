@@ -1,3 +1,8 @@
+local function go_on_attach(client, bufnr)
+  -- Enable completion triggered by <c-x><c-o>
+  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+end
+
 return {
   {
     'neovim/nvim-lspconfig',
@@ -14,9 +19,26 @@ return {
     },
     config = function()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-      require("lspconfig").lua_ls.setup { capabilities = capabilities }
+
+      local lspconfig = require("lspconfig")
+      lspconfig.lua_ls.setup { capabilities = capabilities }
+
+      lspconfig.gopls.setup({
+        on_attach = go_on_attach,
+        settings = {
+          gopls = {
+            analyses = {
+              unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+          },
+        },
+        capabilities = capabilities,
+      })
 
       vim.api.nvim_create_autocmd('LspAttach', {
+
         callback = function(args)
           local client = vim.lsp.get_client_by_id(args.data.client_id)
           if not client then return end
@@ -26,7 +48,7 @@ return {
 
           vim.api.nvim_create_autocmd('BufWritePre', {
             buffer = args.buf,
-            callback = function()
+            callback = function(args)
               vim.lsp.buf.format({ bufnr = args.buf, id = client.id })
             end,
           })

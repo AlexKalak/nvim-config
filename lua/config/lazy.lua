@@ -24,7 +24,7 @@ vim.g.maplocalleader = "\\"
 -- Setup lazy.nvim
 require("lazy").setup({
   spec = {
-    { "folke/tokyonight.nvim",  config = function() vim.cmd.colorscheme "tokyonight-night" end },
+    --{ "folke/tokyonight.nvim",  config = function() vim.cmd.colorscheme "tokyonight-night" end },
     -- import your plugins
     { import = "config.plugins" },
   },
