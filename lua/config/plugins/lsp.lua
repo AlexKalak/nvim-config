@@ -3,6 +3,7 @@ local function go_on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 end
 
+
 return {
   {
     'neovim/nvim-lspconfig',
@@ -23,8 +24,10 @@ return {
       local lspconfig = require("lspconfig")
       local util = require("lspconfig.util")
 
+      --LUA
       lspconfig.lua_ls.setup { capabilities = capabilities }
 
+      --GO
       lspconfig.gopls.setup({
         on_attach = go_on_attach,
         capabilities = capabilities,
@@ -42,6 +45,13 @@ return {
         root_dir = util.root_pattern("go.work", "go.mod", ".git")
       })
 
+      --RUST
+      lspconfig.rust_analyzer.setup {
+        -- Server-specific settings. See `:help lspconfig-setup`
+        settings = {
+          ['rust-analyzer'] = {},
+        },
+      }
       vim.api.nvim_create_autocmd('LspAttach', {
 
         callback = function(args)

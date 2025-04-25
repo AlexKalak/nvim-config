@@ -52,6 +52,9 @@ vim.keymap.set(
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]]
 )
 
-vim.api.nvim_set_keymap("n", "<leader>,", "<C-w>h", {})
-vim.api.nvim_set_keymap("n", "<leader>.", "<C-w>l", {})
+vim.api.nvim_set_keymap("n", "<leader>wl", "<C-w>h", {})
+vim.api.nvim_set_keymap("n", "<leader>wh", "<C-w>l", {})
+vim.api.nvim_set_keymap("n", "<leader>wk", "<C-w>k", {})
+vim.api.nvim_set_keymap("n", "<leader>wj", "<C-w>j", {})
+
 vim.keymap.set("n", "<leader>/", ":noh<cr>", {})

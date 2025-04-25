@@ -1,39 +1,25 @@
 return {
   {
     "folke/trouble.nvim",
-    opts = {}, -- for default options, refer to the configuration section for custom setup.
-    cmd = "Trouble",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    opts = {
+      action_keys = {
+        hover = "K",                                                                        -- opens a small popup with the full multiline message
+        preview = "p",                                                                      -- preview the diagnostic location
+      },
+      multiline = true,                                                                     -- render multi-line messages
+      indent_lines = true,                                                                  -- add an indent guide below the fold icons
+      include_declaration = { "lsp_references", "lsp_implementations", "lsp_definitions" }, -- for the given modes, include the declaration of the current symbol in the results
+      use_diagnostic_signs = false,                                                         -- enabling this will use the signs defined in your lsp client
+      virtual_text = true,
+      underline = true,
+    },
     keys = {
       {
         "<leader>xx",
         "<cmd>Trouble diagnostics toggle<cr>",
         desc = "Diagnostics (Trouble)",
-      },
-      {
-        "<leader>xX",
-        "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
-        desc = "Buffer Diagnostics (Trouble)",
-      },
-      {
-        "<leader>cs",
-        "<cmd>Troube symbols toggle focus=false<cr>",
-        desc = "Symbols (Trouble)",
-      },
-      {
-        "<leader>cl",
-        "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
-        desc = "LSP Definitions / references / ... (Trouble)",
-      },
-      {
-        "<leader>xL",
-        "<cmd>Trouble loclist toggle<cr>",
-        desc = "Location List (Trouble)",
-      },
-      {
-        "<leader>xQ",
-        "<cmd>Trouble qflist toggle<cr>",
-        desc = "Quickfix List (Trouble)",
-      },
+      }
     },
   }
 }

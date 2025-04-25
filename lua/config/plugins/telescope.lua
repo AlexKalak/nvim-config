@@ -14,7 +14,6 @@ return {
           }
         },
         defaults = {
-          layout_strategy = 'bottom_panel'
         }
       }
       vim.keymap.set('n', '<leader>en', function()
