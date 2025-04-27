@@ -2,7 +2,7 @@ return {
   {
     'nvim-treesitter/nvim-treesitter',
     config = function()
-      require('nvim-treesitter.install').compilers = { "gcc" }
+      require('nvim-treesitter.install').compilers = { "clang", "gcc" }
       require('nvim-treesitter.configs').setup {
         ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "rust" },
 
