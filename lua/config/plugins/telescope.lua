@@ -26,6 +26,9 @@ return {
       vim.keymap.set('n', '<leader>pf', function()
         require('telescope.builtin').find_files()
       end)
+      vim.keymap.set('n', '<leader>pg', function()
+        require('telescope.builtin').live_grep()
+      end)
     end
   }
 }

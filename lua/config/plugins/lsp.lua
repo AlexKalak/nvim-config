@@ -48,10 +48,31 @@ return {
       --RUST
       lspconfig.rust_analyzer.setup {
         -- Server-specific settings. See `:help lspconfig-setup`
+        capabilities = capabilities,
         settings = {
           ['rust-analyzer'] = {},
         },
       }
+
+      --TS
+      lspconfig.ts_ls.setup {
+        -- Server-specific settings. See `:help lspconfig-setup`
+        capabilities = capabilities,
+        settings = {
+          ['typescript-language-server'] = {},
+        },
+      }
+
+      --ESLINT-LSP
+      lspconfig.eslint.setup {
+        -- Server-specific settings. See `:help lspconfig-setup`
+        capabilities = capabilities,
+        settings = {
+          ['eslint'] = {},
+        },
+      }
+
+
       vim.api.nvim_create_autocmd('LspAttach', {
 
         callback = function(args)

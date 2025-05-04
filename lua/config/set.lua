@@ -33,3 +33,32 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 
 vim.opt.colorcolumn = "80"
+
+vim.o.foldcolumn = '1' -- '0' is not bad
+vim.o.foldlevel = 99   -- Using ufo provider need a large value, feel free to decrease the value
+vim.o.foldlevelstart = 99
+vim.o.foldenable = true
+
+--keeping view after quiting buf
+vim.api.nvim_create_autocmd({ "BufWinLeave" }, {
+  pattern = { "*.*" },
+  desc = "save view (folds), when closing file",
+  command = "mkview",
+})
+vim.api.nvim_create_autocmd({ "BufWinEnter" }, {
+  pattern = { "*.*" },
+  desc = "load view (folds), when opening file",
+  command = "silent! loadview"
+})
+
+--keeping view after file save
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.*" },
+  desc = "save view (folds), when closing file",
+  command = "mkview",
+})
+vim.api.nvim_create_autocmd({ "BufWritePost" }, {
+  pattern = { "*.*" },
+  desc = "load view (folds), when opening file",
+  command = "silent! loadview"
+})

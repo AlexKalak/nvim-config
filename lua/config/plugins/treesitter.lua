@@ -4,7 +4,7 @@ return {
     config = function()
       require('nvim-treesitter.install').compilers = { "clang", "gcc" }
       require('nvim-treesitter.configs').setup {
-        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "rust" },
+        ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "markdown", "markdown_inline", "rust", "typescript", "tsx" },
 
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
@@ -15,7 +15,7 @@ return {
         auto_install = true,
 
         -- List of parsers to ignore installing (or "all")
-        ignore_install = { "javascript" },
+        ignore_install = {},
 
         ---- If you need to change the installation directory of the parsers (see -> Advanced Setup)
         -- parser_install_dir = "/some/path/to/store/parsers", -- Remember to run vim.opt.runtimepath:append("/some/path/to/store/parsers")!
