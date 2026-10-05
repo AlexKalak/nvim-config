@@ -1,0 +1,46 @@
+-- Per-machine formatting config (gitignored — not tracked).
+--
+-- Copy this file to format.lua and edit what you need:
+--   cp lua/custom/plugins/format.lua.example lua/custom/plugins/format.lua
+--
+-- Fresh clones auto-copy this example when format.lua is missing
+-- (seeded by lua/custom/plugins/init.lua).
+--
+-- Loaded by lua/custom/plugins/init.lua AFTER init.lua SECTION 7 sets up
+-- conform.nvim. This second setup owns `format_on_save` and
+-- `formatters_by_ft` so init.lua can stay free of per-machine lists.
+--
+-- Edit the local copy freely — it will not show up in git.
+
+require('conform').setup {
+  format_on_save = function(bufnr)
+    local enabled_filetypes = {
+      lua = true,
+      python = true,
+      typescript = true,
+      typescriptreact = true,
+      javascript = true,
+      javascriptreact = true,
+      -- json = true,
+      -- jsonc = true,
+    }
+    if enabled_filetypes[vim.bo[bufnr].filetype] then
+      -- Raise timeout_ms for large monorepos / slower formatters.
+      return { timeout_ms = 500 }
+    else
+      return nil
+    end
+  end,
+  formatters_by_ft = {
+    javascript = { 'prettierd', 'prettier', stop_after_first = true },
+    javascriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+    typescript = { 'prettierd', 'prettier', stop_after_first = true },
+    typescriptreact = { 'prettierd', 'prettier', stop_after_first = true },
+    json = { 'prettierd', 'prettier', stop_after_first = true },
+    -- jsonc = { 'prettierd', 'prettier', stop_after_first = true },
+    --
+    -- Project-local bins (e.g. oxfmt via shadowenv) work if on PATH:
+    -- javascript = { 'oxfmt' },
+    -- typescript = { 'oxfmt' },
+  },
+}
